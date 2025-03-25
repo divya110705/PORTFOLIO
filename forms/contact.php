@@ -28,6 +28,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $body .= "Message:\n$message\n";
 
     // Attempt to send the email
+    <form action="https://formspree.io/f/YOUR_FORM_ID" method="post">
+    <input type="text" name="name" required>
+    <input type="email" name="email" required>
+    <textarea name="message" required></textarea>
+    <button type="submit">Send Message</button>
+</form>
+
     if (mail($to, $subject, $body, $headers)) {
         echo json_encode(["status" => "success", "message" => "Your message has been sent successfully."]);
     } else {
