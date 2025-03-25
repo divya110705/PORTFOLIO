@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <title>Contact - Divya</title>
+  
+  <link href="assets/img/favicon.png" rel="icon">
+  <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="assets/css/main.css" rel="stylesheet">
+</head>
+
+<body class="contact-page">
+  <header id="header" class="header sticky-top">
+    <div class="container-fluid d-flex align-items-center justify-content-between">
+      <a href="index.html" class="logo"><h1 class="sitename">Divya</h1></a>
+      <nav id="navmenu" class="navmenu">
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="resume.html">Resume</a></li>
+          <li><a href="contact.html" class="active">Contact</a></li>
+        </ul>
+      </nav>
+      <div class="header-social-links">
+        <a href="mailto:23bcs019@kprcas.ac.in" class="email"><i class="bi bi-envelope-fill"></i></a>
+        <a href="https://www.linkedin.com/in/your-profile" class="linkedin"><i class="bi bi-linkedin"></i></a>
+      </div>
+    </div>
+  </header>
+
+  <main class="main">
+    <section id="contact" class="contact section">
+      <div class="container section-title"><h2>Contact</h2></div>
+      <div class="container">
+        <div class="row gy-4">
+          <div class="col-lg-5">
+            <div class="info-wrap">
+              <div class="info-item d-flex">
+                <i class="bi bi-geo-alt"></i>
+                <div><h3>Address</h3><p>Palladam, Tirupur-641658</p></div>
+              </div>
+              <div class="info-item d-flex">
+                <i class="bi bi-telephone"></i>
+                <div><h3>Call Us</h3><p>+91 9965556602</p></div>
+              </div>
+              <div class="info-item d-flex">
+                <i class="bi bi-envelope"></i>
+                <div><h3>Email Us</h3><p>23bcs019@kprcas.ac.in</p></div>
+              </div>
+              <div class="responsive-map">
+                <iframe 
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3915.741193473388!2d77.284582!3d10.9955767!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3ba9a95673dd8dfb%3A0x6effc31a8745d016!2sPalladam%2C%20Tamil%20Nadu%20641658%2C%20India!5e0!3m2!1sen!2sin!4v1711387200000!5m2!1sen!2sin" 
+                  width="100%" 
+                  height="300" 
+                  style="border:0;"
+                  allowfullscreen="" 
+                  loading="lazy" 
+                  referrerpolicy="no-referrer-when-downgrade">
+                </iframe>
+              </div>              
+            </div>
+          </div> <!-- Closing div for col-lg-5 -->
+
+          <div class="col-lg-7">
+            <form action="forms/contact.php" method="post" class="php-email-form">
+              <div class="row gy-4">
+                <div class="col-md-6">
+                  <label>Your Name</label>
+                  <input type="text" name="name" class="form-control" required>
+                </div>
+                <div class="col-md-6">
+                  <label>Your Email</label>
+                  <input type="email" name="email" class="form-control" required>
+                </div>
+                <div class="col-md-12">
+                  <label>Subject</label>
+                  <input type="text" name="subject" class="form-control" required>
+                </div>
+                <div class="col-md-12">
+                  <label>Message</label>
+                  <textarea name="message" rows="6" class="form-control" required></textarea>
+                </div>
+                <div class="col-md-12 text-center">
+                  <button type="submit">Send Message</button>
+                </div>
+              </div>
+            </form>
+          </div> <!-- Closing div for col-lg-7 -->
+
+        </div> <!-- Closing div for row gy-4 -->
+      </div> <!-- Closing div for container -->
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="credits">&copy; 2024 Divya. All Rights Reserved.</div>
+  </footer>
+
+  <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/js/main.js"></script>
+</body>
+</html>
