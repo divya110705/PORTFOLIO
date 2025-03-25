@@ -82,9 +82,16 @@
                   <label>Message</label>
                   <textarea name="message" rows="6" class="form-control" required></textarea>
                 </div>
-                <div class="col-md-12 text-center">
+                <form action="https://formspree.io/f/YOUR_FORM_ID" method="post">
+    <input type="text" name="name" required>
+    <input type="email" name="email" required>
+    <textarea name="message" required></textarea>
+    <button type="submit">Send Message</button>
+</form>
+
+                <!--<div class="col-md-12 text-center">
                   <button type="submit">Send Message</button>
-                </div>
+                </div>-->
               </div>
             </form>
           </div> <!-- Closing div for col-lg-7 -->
