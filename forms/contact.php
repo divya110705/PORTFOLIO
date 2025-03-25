@@ -1,30 +1,26 @@
 <?php
-use PHPMailer\PHPMailer\PHPMailer;
-use PHPMailer\PHPMailer\Exception;
-require 'vendor/autoload.php'; // If using Composer
-// OR require files manually if downloaded
-require 'PHPMailer/src/PHPMailer.php';
-require 'PHPMailer/src/Exception.php';
-require 'PHPMailer/src/SMTP.php';
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
 
-$mail = new PHPMailer(true);
-try {
-    $mail->isSMTP();
-    $mail->Host = 'smtp.gmail.com'; // SMTP server
-    $mail->SMTPAuth = true;
-    $mail->Username = '23bcs019@kprcas.ac.in'; // Your Gmail address
-    $mail->SMTPSecure = 'tls';
-    $mail->Port = 587;
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $name = htmlspecialchars($_POST["name"]);
+    $email = htmlspecialchars($_POST["email"]);
+    $subject = htmlspecialchars($_POST["subject"]);
+    $message = htmlspecialchars($_POST["message"]);
 
-    $mail->setFrom('email@gmail.com'); // Sender
-    $mail->addAddress('23bcs019@kprcas.ac.in'); // Recipient
+    $to = "23bcs019@kprcas.ac.in"; // Replace with your email
+    $headers = "From: $email" . "\r\n" .
+               "Reply-To: $email" . "\r\n" .
+               "Content-Type: text/plain; charset=UTF-8";
 
-    $mail->Subject = 'Contact Form Message';
-    $mail->Body = 'This is a test email sent using PHPMailer!';
-    
-    $mail->send();
-    echo '✅ Email sent successfully!';
-} catch (Exception $e) {
-    echo "❌ Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
+    $body = "Name: $name\nEmail: $email\n\nMessage:\n$message";
+
+    if (mail($to, $subject, $body, $headers)) {
+        echo "Success";
+    } else {
+        echo "Email sending failed.";
+    }
+} else {
+    echo "Invalid request.";
 }
 ?>
