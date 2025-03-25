@@ -1,39 +1,31 @@
 <?php
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $name = trim($_POST['name']);
-    $email = trim($_POST['email']);
-    $subject = trim($_POST['subject']);
-    $message = trim($_POST['message']);
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\Exception;
+require 'vendor/autoload.php'; // If using Composer
+// OR require files manually if downloaded
+require 'PHPMailer/src/PHPMailer.php';
+require 'PHPMailer/src/Exception.php';
+require 'PHPMailer/src/SMTP.php';
 
-    // Basic validation
-    if (empty($name) || empty($email) || empty($subject) || empty($message)) {
-        echo json_encode(["status" => "error", "message" => "All fields are required."]);
-        exit;
-    }
+$mail = new PHPMailer(true);
+try {
+    $mail->isSMTP();
+    $mail->Host = 'smtp.gmail.com'; // SMTP server
+    $mail->SMTPAuth = true;
+    $mail->Username = '23bcs019@kprcas.ac.in'; // Your Gmail address
+   //$mail->Password = 'your-app-password'; // Use an App Password, not your Gmail password 
+    $mail->SMTPSecure = 'tls';
+    $mail->Port = 587;
 
-    if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-        echo json_encode(["status" => "error", "message" => "Invalid email format."]);
-        exit;
-    }
+    $mail->setFrom('your-email@gmail.com', 'Your Name'); // Sender
+    $mail->addAddress('23bcs019@kprcas.ac.in'); // Recipient
 
-    // Email configuration
-    $to = "your-email@example.com";  // Replace with your email address
-    $headers = "From: $email\r\n" .
-               "Reply-To: $email\r\n" .
-               "Content-Type: text/plain; charset=UTF-8\r\n";
+    $mail->Subject = 'Contact Form Message';
+    $mail->Body = 'This is a test email sent using PHPMailer!';
     
-    $body = "Name: $name\n";
-    $body .= "Email: $email\n";
-    $body .= "Subject: $subject\n";
-    $body .= "Message:\n$message\n";
-
-    // Attempt to send the email
-    if (mail($to, $subject, $body, $headers)) {
-        echo json_encode(["status" => "success", "message" => "Your message has been sent successfully."]);
-    } else {
-        echo json_encode(["status" => "error", "message" => "Failed to send email. Please try again later."]);
-    }
-} else {
-    echo json_encode(["status" => "error", "message" => "Invalid request method."]);
+    $mail->send();
+    echo '✅ Email sent successfully!';
+} catch (Exception $e) {
+    echo "❌ Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
 }
 ?>
