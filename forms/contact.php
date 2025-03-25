@@ -17,7 +17,7 @@ try {
     $mail->SMTPSecure = 'tls';
     $mail->Port = 587;
 
-    $mail->setFrom('your-email@gmail.com', 'Your Name'); // Sender
+    $mail->setFrom('email@gmail.com', 'Your Name'); // Sender
     $mail->addAddress('23bcs019@kprcas.ac.in'); // Recipient
 
     $mail->Subject = 'Contact Form Message';
