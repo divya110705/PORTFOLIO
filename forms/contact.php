@@ -1,26 +1,25 @@
-<?php
-error_reporting(E_ALL);
-ini_set('display_errors', 1);
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\Exception;
+require 'vendor/autoload.php';
 
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $name = htmlspecialchars($_POST["name"]);
-    $email = htmlspecialchars($_POST["email"]);
-    $subject = htmlspecialchars($_POST["subject"]);
-    $message = htmlspecialchars($_POST["message"]);
+$mail = new PHPMailer(true);
+$mail->isSMTP();
+$mail->Host = 'smtp.gmail.com';
+$mail->SMTPAuth = true;
+$mail->Username = 'your-email@gmail.com';
+$mail->Password = 'your-app-password'; 
+$mail->SMTPSecure = 'tls';
+$mail->Port = 587;
 
-    $to = "23bcs019@kprcas.ac.in"; // Replace with your email
-    $headers = "From: $email" . "\r\n" .
-               "Reply-To: $email" . "\r\n" .
-               "Content-Type: text/plain; charset=UTF-8";
+$mail->setFrom('your-email@gmail.com', 'Your Name');
+$mail->addAddress('23bcs019@kprcas.ac.in');
 
-    $body = "Name: $name\nEmail: $email\n\nMessage:\n$message";
+$mail->isHTML(false);
+$mail->Subject = $subject;
+$mail->Body = $body;
 
-    if (mail($to, $subject, $body, $headers)) {
-        echo "Success";
-    } else {
-        echo "Email sending failed.";
-    }
+if ($mail->send()) {
+    echo "Success";
 } else {
-    echo "Invalid request.";
+    echo "Mailer Error: " . $mail->ErrorInfo;
 }
-?>
